@@ -12,6 +12,15 @@ const Card = () => {
   // single product show
   const [singleProduct, setSingleProduct] = useState({});
   const [handelId, setHandelId] = useState(null);
+
+  const sortHandelDta = () => {
+    const sortData = products.sort((a, b) => {
+      return new Date(b.published_in) - new Date(a.published_in);
+    });
+    // baching
+    setProduct([...products, sortData]);
+  };
+
   useEffect(() => {
     fetch(`https://openapi.programming-hero.com/api/ai/tool/${handelId}`)
       .then((res) => res.json())
@@ -32,6 +41,14 @@ const Card = () => {
 
   return (
     <>
+      <div className="text-center mb-3">
+        {products && (
+          <span onClick={sortHandelDta}>
+            <Button> Sort By Date </Button>
+          </span>
+        )}
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-5 mx-20 mb-9">
         {products.slice(0, showAll ? 12 : 6).map((product) => (
           <Product

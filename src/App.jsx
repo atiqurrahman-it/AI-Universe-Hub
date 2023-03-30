@@ -9,9 +9,6 @@ const App = () => {
       <h1 className="text-center text-3xl font-bold text-black py-5">
         AI Universe Hub
       </h1>
-      <div className="text-center mb-5">
-        <Button> Sort By Date </Button>
-      </div>
       <Card></Card>
     </div>
   );
