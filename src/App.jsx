@@ -11,6 +11,7 @@ const App = () => {
       </h1>
       <Button> Sort By Date </Button>
       <Card></Card>
+      <Button>See More</Button>
     </div>
   );
 };
