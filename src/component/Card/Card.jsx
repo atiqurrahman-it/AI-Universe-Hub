@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
+import Modal from "../Modal/Modal";
 import "./Card.css";
 import Product from "./Product/Product";
 
 const Card = () => {
   const [products, setProduct] = useState([]);
-
+  // show all button
   const [showAll, setShowAll] = useState(false);
 
+  // single product show
+  const [singleProduct, setSingleProduct] = useState({});
+  const [handelId, setHandelId] = useState(null);
   useEffect(() => {
-    // way one
-    // fetch("https://openapi.programming-hero.com/api/ai/tools")
-    //   .then((res) => res.json())
-    //   .then((data) => setProduct(data.data.tools));
+    fetch(`https://openapi.programming-hero.com/api/ai/tool/${handelId}`)
+      .then((res) => res.json())
+      .then((data) => setSingleProduct(data.data));
+  }, [handelId]);
+  // single product show end
 
-    // way two
+  useEffect(() => {
     const loadedData = async () => {
       let res = await fetch(
         "https://openapi.programming-hero.com/api/ai/tools"
@@ -28,14 +33,13 @@ const Card = () => {
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-5 mx-20 mb-9">
-        {products.slice(0, showAll ? 12 : 6).map((product) => {
-          console.log(product);
-          return (
-            <>
-              <Product {...product} key={product.id}></Product>
-            </>
-          );
-        })}
+        {products.slice(0, showAll ? 12 : 6).map((product) => (
+          <Product
+            key={product.id}
+            {...product}
+            handelId={setHandelId}
+          ></Product>
+        ))}
       </div>
 
       {/* show all button  control  */}
@@ -47,6 +51,7 @@ const Card = () => {
           </span>
         )}
       </div>
+      <Modal {...singleProduct}></Modal>
     </>
   );
 };

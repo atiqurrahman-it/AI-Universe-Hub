@@ -8,14 +8,16 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Product = (props) => {
-  const { name, image, published_in, features } = props;
+  const { id, name, image, published_in, features } = props;
+  // const { setSingleUniqueId } = props.setSingleUniqueId;
+  // console.log(props)
   return (
     <div className="card w-full bg-base-100 shadow-xl hover:bg-sky-200 ">
       {/* <figure className="h-3/4">
         <img src={image} alt="Shoes" />
       </figure> */}
 
-      <div className="h-3/4" >
+      <div className="h-3/4">
         <img src={image} alt="Shoes" />
       </div>
       <div className="card-body">
@@ -37,7 +39,12 @@ const Product = (props) => {
             <p className="ms-2"> {published_in}</p>
           </div>
           <div>
-            <FontAwesomeIcon icon={faArrowRight} style={{ color: "#ff0000" }} />
+            <label htmlFor="my-modal-5" onClick={() => props.handelId(id)}>
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                style={{ color: "#ff0000" }}
+              />
+            </label>
           </div>
         </div>
       </div>
