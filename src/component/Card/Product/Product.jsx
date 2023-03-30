@@ -3,17 +3,21 @@ import "./Product.css";
 
 import {
   faArrowRight,
-  faCalendarDays
+  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Product = (props) => {
   const { name, image, published_in, features } = props;
   return (
-    <div className="card w-full bg-base-100 shadow-xl hover:bg-sky-200">
-      <figure className="h-3/4">
-        <img src={image}  alt="Shoes" />
-      </figure>
+    <div className="card w-full bg-base-100 shadow-xl hover:bg-sky-200 ">
+      {/* <figure className="h-3/4">
+        <img src={image} alt="Shoes" />
+      </figure> */}
+
+      <div className="h-3/4" >
+        <img src={image} alt="Shoes" />
+      </div>
       <div className="card-body">
         <h2 className="card-title text-3xl font-bold my-2">Features </h2>
 
